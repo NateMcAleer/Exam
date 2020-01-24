@@ -3,8 +3,8 @@
 <html>
   <head>
     <meta charset="utf-8" />
-
-    <title>Gamedev Canvas Workshop - lesson 10: finishing up</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <title>PLaying with Nyan Cat</title>
 
     <style>
       * {
@@ -20,6 +20,13 @@
   </head>
 
   <body>
+    
+    <h1>
+      LETS PLAY
+    </h1>
+  
+    
+   
     <canvas id="myCanvas" width="471" height="320"></canvas>
 
     <script>
@@ -66,6 +73,18 @@
       var lives = 5;
 
       var bricks = [];
+
+    function getRandomColor() {
+  var letters = '0123456789ABCDEF';
+  var color = '#';
+  for (var i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+     ctx.fillStyle = color;
+  }
+
+}
+      
+ 
 
       for (var c = 0; c < brickColumnCount; c++) {
         bricks[c] = [];
@@ -182,7 +201,7 @@
 
               ctx.rect(brickX, brickY, brickWidth, brickHeight);
 
-              ctx.fillStyle = "purple";
+              ctx.fillStyle = getRandomColor();
 
               ctx.fill();
 
@@ -195,7 +214,7 @@
       function drawScore() {
         ctx.font = "16px Arial";
 
-        ctx.fillStyle = "red";
+        ctx.fillStyle = getRandomColor();
 
         ctx.fillText("Score: " + score, 8, 20);
       }
@@ -203,7 +222,7 @@
       function drawLives() {
         ctx.font = "16px Arial";
 
-        ctx.fillStyle = "red";
+        ctx.fillStyle = getRandomColor();
 
         ctx.fillText("Lives: " + lives, canvas.width - 65, 20);
       }
@@ -221,6 +240,7 @@
 
         drawLives();
 
+      
         collisionDetection();
 
         if (x + dx > canvas.width - ballRadius || x + dx < ballRadius) {
@@ -267,6 +287,21 @@
       }
 
       draw();
+     function bigBall()
+      {
+        
+        ballRadius = 50;
+        
+      }
+    function smallBall()
+      {
+        
+        ballRadius = 10;
+        
+      }
     </script>
+    
+  <button onclick="bigBall()">Big Ball</button>
+     <button onclick="smallBall()">Small Ball</button>
   </body>
 </html>
